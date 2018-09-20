@@ -42,10 +42,9 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
     private TextView userLogin;
 
     private ImageView userProfilePic;
-    String email = "", name = "", age = "", password = "";
-
+    private String email = "", name = "", age = "", password = "";
     private static int PICK_IMAGE = 123;
-    Uri imagePath;
+    private Uri imagePath;
 
 
     @Override
