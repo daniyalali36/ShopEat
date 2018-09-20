@@ -2,11 +2,13 @@ package com.example.uroos.shopeat.activities.profile;
 
 
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.ServerValue;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@IgnoreExtraProperties
 public class UserProfile {
 
     private String userAge = "";

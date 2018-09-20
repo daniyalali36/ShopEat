@@ -42,7 +42,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
     private TextView userLogin;
 
     private ImageView userProfilePic;
-    String email, name, age, password;
+    String email = "", name = "", age = "", password = "";
 
     private static int PICK_IMAGE = 123;
     Uri imagePath;
@@ -54,6 +54,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_registration);
         setupUIViews();
 
+        myRef = firebaseDatabase.getReference();
 
 //        userProfilePic.setOnClickListener(this);
         regButton.setOnClickListener(this);
@@ -83,9 +84,6 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
 
             case R.id.btnRegister: {
 
-                sendUserDataToFirebaseServer();
-
-          /*
 
                 if (validate()) {
                     //Upload data to the database
@@ -110,7 +108,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
 
                         }
                     });
-                }*/
+                }
 
                 break;
             }
@@ -196,7 +194,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
 
     private void uploadingImage() {
 
-        myRef = firebaseDatabase.getReference();
+
 
         /*StorageReference imageReference = storageReference
                 .child(firebaseAuth.getUid())
@@ -238,9 +236,8 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
         Map<String, Object> result = userProfile.toMap();
 
         //making new user in users table
-        childUpdates.put("/users"+firebaseAuth.getUid(), result);
-        myRef.updateChildren(childUpdates);
-
+        childUpdates.put("/"+"users"+"/"+firebaseAuth.getUid() , result);
+        FirebaseDatabase.getInstance().getReference().updateChildren(childUpdates);
 
 
     }
